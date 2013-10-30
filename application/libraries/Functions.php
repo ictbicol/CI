@@ -1,7 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Functions {
-
    	public function get_header($pagename=""){
 		include('header.php');
 		if ($pagename){

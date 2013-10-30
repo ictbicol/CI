@@ -6,7 +6,6 @@
 	
 <!-- Css Library - Put Your Css Library here -->
 
-
 <link rel="shortcut icon" href="library/favicon.png" type="image/x-icon" />
 <link rel="stylesheet" type="text/css" href="library/css/screen.css" />
 <link rel="stylesheet" type="text/css" href="library/js/combox/jquery.selectBox.css" />
@@ -18,26 +17,35 @@
 <div class="header">
 	<div class="tophead">
 		<div class="inner">
-				<a href="#" class="logo">LOL - Lights On Location</a>
+				<?php 
+					$attributes = array('class'=>'logo');
+					echo anchor('','LOL - Lights On Location',$attributes); ?>
 				<div class="accountmenu">
 					<ul>
-						<li><a href="#" class="btn login"></a>
-							<div class="logindrop">
+						<li>
+                        	<?php
+								$attributes = array('class'=>'btn login');
+								echo anchor('','',$attributes);
+							?>                            
+							<div class="logindrop">                           
 							<a href="#" class="socwid"><img src="library/images/lgn-btn-fb.jpg" alt=""/></a>
 							<a href="#" class="socwid" style="margin-bottom:10px"><img src="library/images/lgn-btn-google.png" alt=""/></a>
-						<img src="library/images/lgn-btn-or.png" class="loginor" alt=""/>
-						<form action="#">
-							<p><input type="text" value="" name="email" class="text emailadds" ></p>
-						<p>
-							<input type="password" value="" name="password" class="text pass" >
-						</p>
-						<p class="submitfield">
-<input class="submit btn" type="submit" value="">
-</p>
+							<img src="library/images/lgn-btn-or.png" class="loginor" alt=""/>
+						<?php
+							echo form_open('');
+							$attributes = array('name'=>'email','class'=>'text emailadds');
+							echo '<p>'.form_input($attributes).'</p>';
+							$attributes = array('type'=>'password','name'=>'password','class'=>'text pass');
+							echo '<p>'.form_input($attributes).'</p>';
+							echo '<p class="submitfield">';
+							$attributes = array('class'=>'submit btn');
+							echo form_submit($attributes);
+							echo '</p>';							
+						?>                        
 						<p class="rememberselect">
 									<!--<input id="remember" type="checkbox" name="remember" value="1">Remember me | -->
 									<a style="float:none; background-color: #fff; color:#000" href="#">Forgot Password&nbsp; |</a><a style="float:none; background-color: #fff; color:#000" href="#">New User</a>									</p>
-						</form>
+						<?php echo form_close(); ?>
 					</div>
 						</li>
 						<li>	<a href="#" class="btn listyourproperty">List Your Property</a></li>
@@ -50,13 +58,13 @@
 	<div class="search">
 		<div class="inner">
 			<div class="formsearch">
-				<div class="price" id="priceslide"></div> 
-				<select name="sampleselect" class="city selectbox">
-					<option value="">State</option>       
-				</select>
-				<select name="sampleselect" class="property-type selectbox">
-					<option value="">Property Type</option>       
-				</select>
+				<div class="price" id="priceslide"></div>
+                <?php
+					$options = array('state'=>'State');					
+					echo form_dropdown('sampleselect',$options,'', 'class="city selectbox"');
+					$options = array('proptype'=>'Property Type');
+					echo form_dropdown('sampleselect',$options,'','class="property-type selectbox"');
+				?> 							
 				<a href="#" class="btn mediumview-btn">Medium View</a>
 				<a href="#" class="btn pictureview-btn">Medium View</a>
                </div>
@@ -147,7 +155,14 @@
 					<li class="includecol">
 						<h4>Include</h4>
 						<p>
-						<input type="checkbox" name="mls-listed-homes"  value="mls-listed-homes" id="mls-listed-homes"/>
+                        <?php
+							$data = array(
+											'name'=>'vrentals',
+											'value'=>'vacation rentals',
+											'id'=>'mls-listed-homes'
+									);
+							echo form_checkbox($data);
+						?>						
 						<label>Vacation Rentals</label>
 						</p>
 						<p>
@@ -156,27 +171,13 @@
 						</p>
 						<p>
 						<input type="checkbox" name="For-sale-by-ownerhomes" value="For-sale-by-ownerhomes" id="For-sale-by-ownerhomes"/>
-						<label>For-sale-by-owner homes</label>
+						<label>Location Shooting</label>
 						</p>
 						<p>
 						<input type="checkbox" name="forclosed" value="forclosed" id="forclosed" />
-						<label>Foreclosed homes</label>
+						<label>Studio Shoots</label>
 						</p>
-						<p>
-						<input type="checkbox" name="fixerupper" id="salerecord" value="salerecord"/>
-						<label>Sale records</label>
-						<select name="sampleselect" class="last3months selectdef">
-						<option value="">Last 3 months</option>       
-						</select>
-						</p>
-						<p>
-						<input type="checkbox" name="waterfront" id="waterfront" value="waterfront"/>
-						<label>Waterfront</label>
-						</p>
-							<p>
-						<input type="checkbox" name="schools" value="schools"  id="schools"/>
-						<label>Schools</label>
-						</p>
+						
 					</li>
 					<li class="homefactscol">
 						<h4>Home Facts</h4>
